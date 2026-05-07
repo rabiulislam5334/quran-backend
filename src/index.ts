@@ -1,13 +1,14 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
+import { handle } from 'hono/vercel';
 import { surahRoutes } from "./routes/surah";
 import { ayahRoutes } from "./routes/ayah";
 import { searchRoutes } from "./routes/search";
-import { handle } from 'hono/vercel'
 
 const app = new Hono();
 
+// Middleware
 app.use("*", logger());
 app.use(
   "*",
@@ -18,12 +19,14 @@ app.use(
   })
 );
 
+// Routes
 app.get("/", (c) => c.json({ message: "Quran API is running 🕌", version: "1.0.0" }));
 
 app.route("/api/surahs", surahRoutes);
 app.route("/api/ayahs", ayahRoutes);
 app.route("/api/search", searchRoutes);
 
+// Error Handling
 app.onError((err, c) => {
   console.error(err);
   return c.json({ error: "Internal Server Error" }, 500);
@@ -31,6 +34,6 @@ app.onError((err, c) => {
 
 app.notFound((c) => c.json({ error: "Not Found" }, 404));
 
-export const runtime = 'edge' ;
+// Vercel Deployment
+export const runtime = 'edge';
 export default handle(app);
-console.log("🕌 Quran API server running on http://localhost:4000");
