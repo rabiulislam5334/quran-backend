@@ -35,5 +35,5 @@ app.onError((err, c) => {
 app.notFound((c) => c.json({ error: "Not Found" }, 404));
 
 // Vercel Deployment
-export const runtime = 'edge';
+
 export default handle(app);
