@@ -1,10 +1,12 @@
 {
   "name": "quran-backend",
+  "version": "1.0.0",
   "type": "module",
   "private": true,
   "scripts": {
     "dev": "bun run --hot src/index.ts",
-    "build": "bun build ./src/index.ts --outdir ./dist"
+    "build": "bun build ./src/index.ts --outdir ./dist",
+    "deploy": "vercel"
   },
   "dependencies": {
     "hono": "^4.12.18"
