@@ -5,16 +5,17 @@
   "private": true,
   "scripts": {
     "dev": "bun run --hot src/index.ts",
-    "build": "bun build ./src/index.ts --outdir ./dist",
-    "deploy": "vercel"
+    "build": "npm install",
+    "start": "npx ts-node src/index.ts"
   },
   "dependencies": {
-    "hono": "^4.12.18"
+    "@hono/node-server": "^2.0.1",
+    "hono": "^4.12.18",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.0.0"
   },
   "devDependencies": {
-    "@types/bun": "latest",
-    "@types/node": "latest",
-    "typescript": "^5.0.0"
+    "@types/node": "latest"
   },
   "engines": {
     "node": ">=18"

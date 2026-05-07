@@ -1,34 +1,32 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
-import { handle } from 'hono/vercel';
-
-import { surahRoutes } from "./routes/surah.js";     
-import { ayahRoutes } from "./routes/ayah.js";
-import { searchRoutes } from "./routes/search.js";
+import { serve } from "@hono/node-server"; 
+import { surahRoutes } from "./routes/surah";
+import { ayahRoutes } from "./routes/ayah";
+import { searchRoutes } from "./routes/search";
 
 const app = new Hono();
 
+// Middleware
 app.use("*", logger());
-
 app.use(
   "*",
   cors({
-    origin: "*",
+    origin: "*", 
     allowMethods: ["GET", "OPTIONS"],
     allowHeaders: ["Content-Type"],
   })
 );
 
-app.get("/", (c) => c.json({ 
-  message: "Quran API is running 🕌", 
-  version: "1.0.0" 
-}));
+// Routes
+app.get("/", (c) => c.json({ message: "Quran API is running 🕌", version: "1.0.0" }));
 
 app.route("/api/surahs", surahRoutes);
 app.route("/api/ayahs", ayahRoutes);
 app.route("/api/search", searchRoutes);
 
+// Error Handling
 app.onError((err, c) => {
   console.error(err);
   return c.json({ error: "Internal Server Error" }, 500);
@@ -36,5 +34,12 @@ app.onError((err, c) => {
 
 app.notFound((c) => c.json({ error: "Not Found" }, 404));
 
-export default handle(app);
-export const GET = handle(app);
+
+const port = process.env.PORT ? parseInt(process.env.PORT) : 4000;
+
+serve({
+  fetch: app.fetch,
+  port: port
+});
+
+console.log(`🕌 Quran API server running on port ${port}`);
