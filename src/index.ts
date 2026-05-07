@@ -4,6 +4,7 @@ import { logger } from "hono/logger";
 import { surahRoutes } from "./routes/surah";
 import { ayahRoutes } from "./routes/ayah";
 import { searchRoutes } from "./routes/search";
+import { handle } from 'hono/vercel'
 
 const app = new Hono();
 
@@ -30,9 +31,6 @@ app.onError((err, c) => {
 
 app.notFound((c) => c.json({ error: "Not Found" }, 404));
 
-export default {
-  port: process.env.PORT ? parseInt(process.env.PORT) : 4000,
-  fetch: app.fetch,
-};
-
+export const runtime = 'edge' ;
+export default handle(app);
 console.log("🕌 Quran API server running on http://localhost:4000");
