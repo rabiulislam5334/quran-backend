@@ -143,17 +143,19 @@ export async function fetchSurahData(surahId: number): Promise<{
   arabic: Record<string, string>;
   translation: Record<string, string>;
 }> {
-  const paddedId = String(surahId).padStart(3, "0");
+  
   const [arabicRes, transRes] = await Promise.all([
-    fetch(`${BASE_URL}/surah/surah_${paddedId}.json`),
-    fetch(`${BASE_URL}/translation/en/en_translation_${paddedId}.json`),
+    fetch(`${BASE_URL}/surah/surah_${surahId}.json`),
+    fetch(`${BASE_URL}/translation/en/en_translation_${surahId}.json`),
   ]);
 
   if (!arabicRes.ok || !transRes.ok) {
+    
+    console.error(`Failed at: ${BASE_URL}/surah/surah_${surahId}.json`);
     throw new Error(`Failed to fetch surah ${surahId}`);
   }
 
   const arabic = await arabicRes.json() as Record<string, string>;
-const translation = await transRes.json() as Record<string, string>;
+  const translation = await transRes.json() as Record<string, string>;
   return { arabic, translation };
 }
