@@ -226,7 +226,9 @@ export function searchFromCache(query: string): {
     if (!cached) continue;
 
     for (const [key, trans] of Object.entries(cached.translation)) {
-      const arabicText = cached.arabic[key] ?? "";
+      // string নয় এমন value skip করো (object, number, null ইত্যাদি)
+      if (typeof trans !== "string") continue;
+      const arabicText = String(cached.arabic[key] ?? "");
       const transLower = trans.toLowerCase();
       const arabicLower = arabicText.toLowerCase();
 
