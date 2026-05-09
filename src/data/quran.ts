@@ -138,7 +138,7 @@ export const SURAHS: Surah[] = [
 ];
 
 // ══ IN-MEMORY CACHE ══
-// Server start এ একবার load হবে, এরপর সব request cache থেকে serve হবে
+
 type SurahCache = {
   arabic: Record<string, string>;
   translation: Record<string, string>;
@@ -148,7 +148,6 @@ const surahCache = new Map<number, SurahCache>();
 let cacheReady = false;
 let cachePromise: Promise<void> | null = null;
 
-// সব ১১৪ সূরা একবারে load করে cache এ রাখো
 async function warmupCache(): Promise<void> {
   console.log("🕌 Warming up Quran cache (114 surahs)...");
   
@@ -184,7 +183,7 @@ async function warmupCache(): Promise<void> {
   console.log(`✅ Cache ready: ${surahCache.size}/114 surahs loaded`);
 }
 
-// Server start এ call করো
+
 export function initCache(): Promise<void> {
   if (!cachePromise) {
     cachePromise = warmupCache();
@@ -192,9 +191,8 @@ export function initCache(): Promise<void> {
   return cachePromise;
 }
 
-// fetchSurahData — এখন cache থেকে serve করে, network call নেই
 export async function fetchSurahData(surahId: number): Promise<SurahCache> {
-  // Cache miss হলে সরাসরি fetch করো (fallback)
+  
   if (!surahCache.has(surahId)) {
     const [arabicRes, transRes] = await Promise.all([
       fetch(`${BASE_URL}/surah/surah_${surahId}.json`),
@@ -226,7 +224,6 @@ export function searchFromCache(query: string): {
     if (!cached) continue;
 
     for (const [key, trans] of Object.entries(cached.translation)) {
-      // string নয় এমন value skip করো (object, number, null ইত্যাদি)
       if (typeof trans !== "string") continue;
       const arabicText = String(cached.arabic[key] ?? "");
       const transLower = trans.toLowerCase();

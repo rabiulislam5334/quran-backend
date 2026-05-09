@@ -13,7 +13,6 @@ searchRoutes.get("/", async (c) => {
     return c.json({ error: "Query must be at least 2 characters" }, 400);
   }
 
-  // Cache থেকে সরাসরি search — instant, কোনো network call নেই
   const results = searchFromCache(query);
 
   const total = results.length;
