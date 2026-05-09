@@ -1,27 +1,24 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
-import { serve } from "@hono/node-server"; 
+import { serve } from "@hono/node-server";
 import { surahRoutes } from "./routes/surah";
 import { ayahRoutes } from "./routes/ayah";
 import { searchRoutes } from "./routes/search";
+import { initCache } from "./data/quran";
 
 const app = new Hono();
 
 // Middleware
 app.use("*", logger());
-app.use(
-  "*",
-  cors({
-    origin: "*", 
-    allowMethods: ["GET", "OPTIONS"],
-    allowHeaders: ["Content-Type"],
-  })
-);
+app.use("*", cors({
+  origin: "*",
+  allowMethods: ["GET", "OPTIONS"],
+  allowHeaders: ["Content-Type"],
+}));
 
 // Routes
 app.get("/", (c) => c.json({ message: "Quran API is running 🕌", version: "1.0.0" }));
-
 app.route("/api/surahs", surahRoutes);
 app.route("/api/ayahs", ayahRoutes);
 app.route("/api/search", searchRoutes);
@@ -34,12 +31,11 @@ app.onError((err, c) => {
 
 app.notFound((c) => c.json({ error: "Not Found" }, 404));
 
-
 const port = process.env.PORT ? parseInt(process.env.PORT) : 4000;
 
-serve({
-  fetch: app.fetch,
-  port: port
-});
+serve({ fetch: app.fetch, port });
 
 console.log(`🕌 Quran API server running on port ${port}`);
+
+
+initCache().catch(console.error);

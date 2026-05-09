@@ -5,9 +5,9 @@ const BASE_URL = process.env.QURAN_BASE_URL || "https://raw.githubusercontent.co
 
 export interface Surah {
   id: number;
-  name: string;           
-  transliteration: string; 
-  translation: string;   
+  name: string;
+  transliteration: string;
+  translation: string;
   type: "meccan" | "medinan";
   total_verses: number;
 }
@@ -16,11 +16,10 @@ export interface Ayah {
   id: number;
   surah: number;
   verse: number;
-  text: string;           
-  translation: string;    
+  text: string;
+  translation: string;
 }
 
-// Static surah metadata (114 surahs)
 export const SURAHS: Surah[] = [
   { id: 1, name: "الفاتحة", transliteration: "Al-Fatihah", translation: "The Opening", type: "meccan", total_verses: 7 },
   { id: 2, name: "البقرة", transliteration: "Al-Baqarah", translation: "The Cow", type: "medinan", total_verses: 286 },
@@ -50,15 +49,15 @@ export const SURAHS: Surah[] = [
   { id: 26, name: "الشعراء", transliteration: "Ash-Shu'ara", translation: "The Poets", type: "meccan", total_verses: 227 },
   { id: 27, name: "النمل", transliteration: "An-Naml", translation: "The Ant", type: "meccan", total_verses: 93 },
   { id: 28, name: "القصص", transliteration: "Al-Qasas", translation: "The Stories", type: "meccan", total_verses: 88 },
-  { id: 29, name: "العنكبوت", transliteration: "Al-'Ankabut", translation: "The Spider", type: "meccan", total_verses: 69 },
+  { id: 29, name: "العنكبوت", transliteration: "Al-Ankabut", translation: "The Spider", type: "meccan", total_verses: 69 },
   { id: 30, name: "الروم", transliteration: "Ar-Rum", translation: "The Romans", type: "meccan", total_verses: 60 },
   { id: 31, name: "لقمان", transliteration: "Luqman", translation: "Luqman", type: "meccan", total_verses: 34 },
   { id: 32, name: "السجدة", transliteration: "As-Sajdah", translation: "The Prostration", type: "meccan", total_verses: 30 },
   { id: 33, name: "الأحزاب", transliteration: "Al-Ahzab", translation: "The Combined Forces", type: "medinan", total_verses: 73 },
-  { id: 34, name: "سبأ", transliteration: "Saba", translation: "Sheba", type: "meccan", total_verses: 54 },
-  { id: 35, name: "فاطر", transliteration: "Fatir", translation: "The Originator", type: "meccan", total_verses: 45 },
+  { id: 34, name: "سبإ", transliteration: "Saba", translation: "Sheba", type: "meccan", total_verses: 54 },
+  { id: 35, name: "فاطر", transliteration: "Fatir", translation: "Originator", type: "meccan", total_verses: 45 },
   { id: 36, name: "يس", transliteration: "Ya-Sin", translation: "Ya Sin", type: "meccan", total_verses: 83 },
-  { id: 37, name: "الصافات", transliteration: "As-Saffat", translation: "Those Who Set the Ranks", type: "meccan", total_verses: 182 },
+  { id: 37, name: "الصافات", transliteration: "As-Saffat", translation: "Those who set the Ranks", type: "meccan", total_verses: 182 },
   { id: 38, name: "ص", transliteration: "Sad", translation: "The Letter Sad", type: "meccan", total_verses: 88 },
   { id: 39, name: "الزمر", transliteration: "Az-Zumar", translation: "The Troops", type: "meccan", total_verses: 75 },
   { id: 40, name: "غافر", transliteration: "Ghafir", translation: "The Forgiver", type: "meccan", total_verses: 85 },
@@ -81,9 +80,9 @@ export const SURAHS: Surah[] = [
   { id: 57, name: "الحديد", transliteration: "Al-Hadid", translation: "The Iron", type: "medinan", total_verses: 29 },
   { id: 58, name: "المجادلة", transliteration: "Al-Mujadila", translation: "The Pleading Woman", type: "medinan", total_verses: 22 },
   { id: 59, name: "الحشر", transliteration: "Al-Hashr", translation: "The Exile", type: "medinan", total_verses: 24 },
-  { id: 60, name: "الممتحنة", transliteration: "Al-Mumtahanah", translation: "She that is to be Examined", type: "medinan", total_verses: 13 },
+  { id: 60, name: "الممتحنة", transliteration: "Al-Mumtahanah", translation: "She that is to be examined", type: "medinan", total_verses: 13 },
   { id: 61, name: "الصف", transliteration: "As-Saf", translation: "The Ranks", type: "medinan", total_verses: 14 },
-  { id: 62, name: "الجمعة", transliteration: "Al-Jumu'ah", translation: "The Congregation, Friday", type: "medinan", total_verses: 11 },
+  { id: 62, name: "الجمعة", transliteration: "Al-Jumu'ah", translation: "The Congregation", type: "medinan", total_verses: 11 },
   { id: 63, name: "المنافقون", transliteration: "Al-Munafiqun", translation: "The Hypocrites", type: "medinan", total_verses: 11 },
   { id: 64, name: "التغابن", transliteration: "At-Taghabun", translation: "The Mutual Disillusion", type: "medinan", total_verses: 18 },
   { id: 65, name: "الطلاق", transliteration: "At-Talaq", translation: "The Divorce", type: "medinan", total_verses: 12 },
@@ -99,16 +98,16 @@ export const SURAHS: Surah[] = [
   { id: 75, name: "القيامة", transliteration: "Al-Qiyamah", translation: "The Resurrection", type: "meccan", total_verses: 40 },
   { id: 76, name: "الإنسان", transliteration: "Al-Insan", translation: "The Man", type: "medinan", total_verses: 31 },
   { id: 77, name: "المرسلات", transliteration: "Al-Mursalat", translation: "The Emissaries", type: "meccan", total_verses: 50 },
-  { id: 78, name: "النبأ", transliteration: "An-Naba", translation: "The Tidings", type: "meccan", total_verses: 40 },
+  { id: 78, name: "النبإ", transliteration: "An-Naba", translation: "The Tidings", type: "meccan", total_verses: 40 },
   { id: 79, name: "النازعات", transliteration: "An-Nazi'at", translation: "Those who drag forth", type: "meccan", total_verses: 46 },
   { id: 80, name: "عبس", transliteration: "Abasa", translation: "He Frowned", type: "meccan", total_verses: 42 },
   { id: 81, name: "التكوير", transliteration: "At-Takwir", translation: "The Overthrowing", type: "meccan", total_verses: 29 },
-  { id: 82, name: "الانفطار", transliteration: "Al-Infitar", translation: "The Cleaving", type: "meccan", total_verses: 19 },
+  { id: 82, name: "الإنفطار", transliteration: "Al-Infitar", translation: "The Cleaving", type: "meccan", total_verses: 19 },
   { id: 83, name: "المطففين", transliteration: "Al-Mutaffifin", translation: "The Defrauding", type: "meccan", total_verses: 36 },
-  { id: 84, name: "الانشقاق", transliteration: "Al-Inshiqaq", translation: "The Sundering", type: "meccan", total_verses: 25 },
+  { id: 84, name: "الإنشقاق", transliteration: "Al-Inshiqaq", translation: "The Sundering", type: "meccan", total_verses: 25 },
   { id: 85, name: "البروج", transliteration: "Al-Buruj", translation: "The Mansions of the Stars", type: "meccan", total_verses: 22 },
   { id: 86, name: "الطارق", transliteration: "At-Tariq", translation: "The Nightcommer", type: "meccan", total_verses: 17 },
-  { id: 87, name: "الأعلى", transliteration: "Al-A'la", translation: "The Most High", type: "meccan", total_verses: 19 },
+  { id: 87, name: "الأعلى", transliteration: "Al-Ala", translation: "The Most High", type: "meccan", total_verses: 19 },
   { id: 88, name: "الغاشية", transliteration: "Al-Ghashiyah", translation: "The Overwhelming", type: "meccan", total_verses: 26 },
   { id: 89, name: "الفجر", transliteration: "Al-Fajr", translation: "The Dawn", type: "meccan", total_verses: 30 },
   { id: 90, name: "البلد", transliteration: "Al-Balad", translation: "The City", type: "meccan", total_verses: 20 },
@@ -121,7 +120,7 @@ export const SURAHS: Surah[] = [
   { id: 97, name: "القدر", transliteration: "Al-Qadr", translation: "The Power", type: "meccan", total_verses: 5 },
   { id: 98, name: "البينة", transliteration: "Al-Bayyinah", translation: "The Clear Proof", type: "medinan", total_verses: 8 },
   { id: 99, name: "الزلزلة", transliteration: "Az-Zalzalah", translation: "The Earthquake", type: "medinan", total_verses: 8 },
-  { id: 100, name: "العاديات", transliteration: "Al-Adiyat", translation: "The Coursers", type: "meccan", total_verses: 11 },
+  { id: 100, name: "العاديات", transliteration: "Al-Adiyat", translation: "The Courser", type: "meccan", total_verses: 11 },
   { id: 101, name: "القارعة", transliteration: "Al-Qari'ah", translation: "The Calamity", type: "meccan", total_verses: 11 },
   { id: 102, name: "التكاثر", transliteration: "At-Takathur", translation: "The Rivalry in World Increase", type: "meccan", total_verses: 8 },
   { id: 103, name: "العصر", transliteration: "Al-Asr", translation: "The Declining Day", type: "meccan", total_verses: 3 },
@@ -132,30 +131,126 @@ export const SURAHS: Surah[] = [
   { id: 108, name: "الكوثر", transliteration: "Al-Kawthar", translation: "The Abundance", type: "meccan", total_verses: 3 },
   { id: 109, name: "الكافرون", transliteration: "Al-Kafirun", translation: "The Disbelievers", type: "meccan", total_verses: 6 },
   { id: 110, name: "النصر", transliteration: "An-Nasr", translation: "The Divine Support", type: "medinan", total_verses: 3 },
-  { id: 111, name: "المسد", transliteration: "Al-Masad", translation: "The Palm Fibre", type: "meccan", total_verses: 5 },
+  { id: 111, name: "المسد", transliteration: "Al-Masad", translation: "The Palm Fiber", type: "meccan", total_verses: 5 },
   { id: 112, name: "الإخلاص", transliteration: "Al-Ikhlas", translation: "The Sincerity", type: "meccan", total_verses: 4 },
   { id: 113, name: "الفلق", transliteration: "Al-Falaq", translation: "The Daybreak", type: "meccan", total_verses: 5 },
-  { id: 114, name: "الناس", transliteration: "An-Nas", translation: "Mankind", type: "meccan", total_verses: 6 },
+  { id: 114, name: "الناس", transliteration: "An-Nas", translation: "The Mankind", type: "meccan", total_verses: 6 },
 ];
 
-// Fetches ayah data from quran-json CDN
-export async function fetchSurahData(surahId: number): Promise<{
+// ══ IN-MEMORY CACHE ══
+// Server start এ একবার load হবে, এরপর সব request cache থেকে serve হবে
+type SurahCache = {
   arabic: Record<string, string>;
   translation: Record<string, string>;
-}> {
-  
-  const [arabicRes, transRes] = await Promise.all([
-    fetch(`${BASE_URL}/surah/surah_${surahId}.json`),
-    fetch(`${BASE_URL}/translation/en/en_translation_${surahId}.json`),
-  ]);
+};
 
-  if (!arabicRes.ok || !transRes.ok) {
+const surahCache = new Map<number, SurahCache>();
+let cacheReady = false;
+let cachePromise: Promise<void> | null = null;
+
+// সব ১১৪ সূরা একবারে load করে cache এ রাখো
+async function warmupCache(): Promise<void> {
+  console.log("🕌 Warming up Quran cache (114 surahs)...");
+  
+  const BATCH_SIZE = 10; // ১০টা করে batch এ load করো
+  
+  for (let start = 1; start <= 114; start += BATCH_SIZE) {
+    const batch = Array.from(
+      { length: Math.min(BATCH_SIZE, 115 - start) },
+      (_, i) => start + i
+    );
     
-    console.error(`Failed at: ${BASE_URL}/surah/surah_${surahId}.json`);
-    throw new Error(`Failed to fetch surah ${surahId}`);
+    await Promise.all(
+      batch.map(async (id) => {
+        try {
+          const [arabicRes, transRes] = await Promise.all([
+            fetch(`${BASE_URL}/surah/surah_${id}.json`),
+            fetch(`${BASE_URL}/translation/en/en_translation_${id}.json`),
+          ]);
+          
+          if (arabicRes.ok && transRes.ok) {
+            const arabic = await arabicRes.json() as Record<string, string>;
+            const translation = await transRes.json() as Record<string, string>;
+            surahCache.set(id, { arabic, translation });
+          }
+        } catch {
+          console.error(`Failed to cache surah ${id}`);
+        }
+      })
+    );
+  }
+  
+  cacheReady = true;
+  console.log(`✅ Cache ready: ${surahCache.size}/114 surahs loaded`);
+}
+
+// Server start এ call করো
+export function initCache(): Promise<void> {
+  if (!cachePromise) {
+    cachePromise = warmupCache();
+  }
+  return cachePromise;
+}
+
+// fetchSurahData — এখন cache থেকে serve করে, network call নেই
+export async function fetchSurahData(surahId: number): Promise<SurahCache> {
+  // Cache miss হলে সরাসরি fetch করো (fallback)
+  if (!surahCache.has(surahId)) {
+    const [arabicRes, transRes] = await Promise.all([
+      fetch(`${BASE_URL}/surah/surah_${surahId}.json`),
+      fetch(`${BASE_URL}/translation/en/en_translation_${surahId}.json`),
+    ]);
+    if (!arabicRes.ok || !transRes.ok) throw new Error(`Failed to fetch surah ${surahId}`);
+    const arabic = await arabicRes.json() as Record<string, string>;
+    const translation = await transRes.json() as Record<string, string>;
+    surahCache.set(surahId, { arabic, translation });
+  }
+  return surahCache.get(surahId)!;
+}
+
+// Search সরাসরি cache থেকে — fast, no network
+export function searchFromCache(query: string): {
+  surah_id: number;
+  surah_name: string;
+  surah_transliteration: string;
+  verse: number;
+  text: string;
+  translation: string;
+  highlight: string;
+}[] {
+  const q = query.trim().toLowerCase();
+  const results: ReturnType<typeof searchFromCache> = [];
+
+  for (const surah of SURAHS) {
+    const cached = surahCache.get(surah.id);
+    if (!cached) continue;
+
+    for (const [key, trans] of Object.entries(cached.translation)) {
+      const arabicText = cached.arabic[key] ?? "";
+      const transLower = trans.toLowerCase();
+      const arabicLower = arabicText.toLowerCase();
+
+      if (transLower.includes(q) || arabicLower.includes(q)) {
+        const idx = transLower.indexOf(q);
+        const highlight =
+          idx !== -1
+            ? "..." + trans.substring(Math.max(0, idx - 40), idx + q.length + 40) + "..."
+            : trans.substring(0, 100) + "...";
+
+        results.push({
+          surah_id: surah.id,
+          surah_name: surah.name,
+          surah_transliteration: surah.transliteration,
+          verse: parseInt(key),
+          text: arabicText,
+          translation: trans,
+          highlight,
+        });
+      }
+    }
   }
 
-  const arabic = await arabicRes.json() as Record<string, string>;
-  const translation = await transRes.json() as Record<string, string>;
-  return { arabic, translation };
+  return results.sort((a, b) =>
+    a.surah_id !== b.surah_id ? a.surah_id - b.surah_id : a.verse - b.verse
+  );
 }
